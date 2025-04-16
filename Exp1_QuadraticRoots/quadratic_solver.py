@@ -11,7 +11,6 @@ def standard_formula(a, b, c):
     返回:
         tuple: 方程的两个根 (x1, x2) 或 None(无实根)
     """
-    # 学生在此处实现代码
     discriminant = b**2 - 4*a*c
     if discriminant < 0:
         return None
@@ -32,7 +31,6 @@ def alternative_formula(a, b, c):
     返回:
         tuple: 方程的两个根 (x1, x2) 或 None(无实根)
     """
-    # 学生在此处实现代码
     discriminant = b**2 - 4*a*c
     if discriminant < 0:
         return None
@@ -57,7 +55,6 @@ def stable_formula(a, b, c):
     返回:
         tuple: 方程的两个根 (x1, x2) 或 None(无实根)
     """
-    # 学生在此处实现代码
     # 处理a=0的情况（线性方程）
     if a == 0:
         if b == 0:

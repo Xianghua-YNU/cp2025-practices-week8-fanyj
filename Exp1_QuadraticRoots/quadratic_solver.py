@@ -15,8 +15,9 @@ def standard_formula(a, b, c):
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
-    x1 = (-b + np.sqrt(discriminant)) / (2 * a)
-    x2 = (-b - np.sqrt(discriminant)) / (2 * a)
+    sqrt_discriminant = np.sqrt(discriminant)
+    x1 = (-b + sqrt_discriminant) / (2 * a)
+    x2 = (-b - sqrt_discriminant) / (2 * a)
     return x1, x2
 
 
@@ -35,8 +36,13 @@ def alternative_formula(a, b, c):
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
-    x1 = (2 * c) / (-b - np.sqrt(discriminant))
-    x2 = (2 * c) / (-b + np.sqrt(discriminant))
+    sqrt_discriminant = np.sqrt(discriminant)
+    if b >= 0:
+        x1 = -2 * c / (b + sqrt_discriminant)
+        x2 = (-b - sqrt_discriminant) / (2 * a)
+    else:
+        x1 = (-b + sqrt_discriminant) / (2 * a)
+        x2 = -2 * c / (b - sqrt_discriminant)
     return x1, x2
 
 
@@ -54,9 +60,13 @@ def stable_formula(a, b, c):
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
-    q = -0.5 * (b + np.sign(b) * np.sqrt(discriminant))
-    x1 = q / a
-    x2 = c / q
+    sqrt_discriminant = np.sqrt(discriminant)
+    if b >= 0:
+        x1 = -2 * c / (b + sqrt_discriminant)
+        x2 = (-b - sqrt_discriminant) / (2 * a)
+    else:
+        x1 = (-b + sqrt_discriminant) / (2 * a)
+        x2 = -2 * c / (b - sqrt_discriminant)
     return x1, x2
 
 

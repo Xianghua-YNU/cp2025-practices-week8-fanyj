@@ -10,14 +10,13 @@ def standard_formula(a, b, c):
         c (float): 常数项
 
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
-    sqrt_discriminant = np.sqrt(discriminant)
-    x1 = (-b + sqrt_discriminant) / (2 * a)
-    x2 = (-b - sqrt_discriminant) / (2 * a)
+    x1 = (-b + np.sqrt(discriminant)) / (2 * a)
+    x2 = (-b - np.sqrt(discriminant)) / (2 * a)
     return x1, x2
 
 
@@ -31,18 +30,13 @@ def alternative_formula(a, b, c):
         c (float): 常数项
 
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
-    sqrt_discriminant = np.sqrt(discriminant)
-    if b >= 0:
-        x1 = -2 * c / (b + sqrt_discriminant)
-        x2 = (-b - sqrt_discriminant) / (2 * a)
-    else:
-        x1 = (-b + sqrt_discriminant) / (2 * a)
-        x2 = -2 * c / (b - sqrt_discriminant)
+    x1 = (2 * c) / (-b - np.sqrt(discriminant))
+    x2 = (2 * c) / (-b + np.sqrt(discriminant))
     return x1, x2
 
 
@@ -55,18 +49,14 @@ def stable_formula(a, b, c):
         c (float): 常数项
 
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
-    sqrt_discriminant = np.sqrt(discriminant)
-    if b >= 0:
-        x1 = -2 * c / (b + sqrt_discriminant)
-        x2 = (-b - sqrt_discriminant) / (2 * a)
-    else:
-        x1 = (-b + sqrt_discriminant) / (2 * a)
-        x2 = -2 * c / (b - sqrt_discriminant)
+    q = -0.5 * (b + np.sign(b) * np.sqrt(discriminant))
+    x1 = q / a
+    x2 = c / q
     return x1, x2
 
 
@@ -108,4 +98,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
     

@@ -9,16 +9,14 @@ def standard_formula(a, b, c):
         c (float): 常数项
     
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
-    # 学生在此处实现代码
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
     x1 = (-b + np.sqrt(discriminant)) / (2 * a)
     x2 = (-b - np.sqrt(discriminant)) / (2 * a)
     return x1, x2
-
 def alternative_formula(a, b, c):
     """使用替代公式求解二次方程 ax^2 + bx + c = 0
     该方法通过将标准公式的分子和分母都乘以 -b∓√(b^2-4ac) 得到
@@ -29,9 +27,8 @@ def alternative_formula(a, b, c):
         c (float): 常数项
     
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
-    # 学生在此处实现代码
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
@@ -48,9 +45,8 @@ def stable_formula(a, b, c):
         c (float): 常数项
     
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
-    # 学生在此处实现代码
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
         return None
@@ -58,7 +54,6 @@ def stable_formula(a, b, c):
     x1 = q / a
     x2 = c / q
     return x1, x2
-
 def main():
     test_cases = [
         (1, 2, 1),             # 简单情况

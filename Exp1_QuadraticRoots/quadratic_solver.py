@@ -1,5 +1,4 @@
 import numpy as np
-
 def standard_formula(a, b, c):
     """使用标准公式求解二次方程 ax^2 + bx + c = 0
     
@@ -35,7 +34,6 @@ def alternative_formula(a, b, c):
     x1 = (2 * c) / (-b - np.sqrt(discriminant))
     x2 = (2 * c) / (-b + np.sqrt(discriminant))
     return x1, x2
-
 def stable_formula(a, b, c):
     """稳定的二次方程求根程序，能够处理各种特殊情况和数值稳定性问题
     
@@ -88,6 +86,5 @@ def main():
             print("x1 = {:.15f}, x2 = {:.15f}".format(roots3[0], roots3[1]))
         else:
             print("无实根")
-
 if __name__ == "__main__":
     main()

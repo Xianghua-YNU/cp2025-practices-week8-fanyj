@@ -31,7 +31,7 @@ def alternative_formula(a, b, c):
     """
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
-        return None
+       return None
     x1 = (2 * c) / (-b - np.sqrt(discriminant))
     x2 = (2 * c) / (-b + np.sqrt(discriminant))
     return x1, x2
@@ -49,7 +49,7 @@ def stable_formula(a, b, c):
     """
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
-        return None
+       return None
     q = -0.5 * (b + np.sign(b) * np.sqrt(discriminant))
     x1 = q / a
     x2 = c / q

@@ -11,16 +11,12 @@ def standard_formula(a, b, c):
     返回:
         tuple: 方程的两个根 (x1, x2)
     """
-    discriminant = b * b - 4 * a * c
+    discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
-        return None  # 无实根
-    
-    sqrt_discriminant = np.sqrt(discriminant)
-    x1 = (-b + sqrt_discriminant) / (2 * a)
-    x2 = (-b - sqrt_discriminant) / (2 * a)
-    
+        return None
+    x1 = (-b + np.sqrt(discriminant)) / (2 * a)
+    x2 = (-b - np.sqrt(discriminant)) / (2 * a)
     return x1, x2
-
 def alternative_formula(a, b, c):
     """使用替代公式求解二次方程 ax^2 + bx + c = 0
     该方法通过将标准公式的分子和分母都乘以 -b∓√(b^2-4ac) 得到
@@ -33,14 +29,11 @@ def alternative_formula(a, b, c):
     返回:
         tuple: 方程的两个根 (x1, x2)
     """
-    discriminant = b * b - 4 * a * c
+    discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
-        return None  # 无实根
-    
-    sqrt_discriminant = np.sqrt(discriminant)
-    x1 = (2 * c) / (-b - sqrt_discriminant)
-    x2 = (2 * c) / (-b + sqrt_discriminant)
-    
+        return None
+    x1 = (2 * c) / (-b - np.sqrt(discriminant))
+    x2 = (2 * c) / (-b + np.sqrt(discriminant))
     return x1, x2
 
 def stable_formula(a, b, c):
@@ -54,27 +47,13 @@ def stable_formula(a, b, c):
     返回:
         tuple: 方程的两个根 (x1, x2)
     """
-    # 处理特殊情况：a = 0
-    if abs(a) < 1e-10:
-        if abs(b) < 1e-10:  # a ≈ 0 且 b ≈ 0
-            return None if abs(c) > 1e-10 else (0, 0)  # 无解或无穷多解
-        return (-c/b, -c/b)  # 一次方程的解
-    
-    discriminant = b * b - 4 * a * c
+    discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
-        return None  # 无实根
-    
-    # 使用数值稳定的求根公式
-    sqrt_discriminant = np.sqrt(discriminant)
-    if b >= 0:
-        x1 = (-b - sqrt_discriminant) / (2 * a)
-        x2 = (2 * c) / (-b - sqrt_discriminant)
-    else:
-        x1 = (-b + sqrt_discriminant) / (2 * a)
-        x2 = (2 * c) / (-b + sqrt_discriminant)
-    
+        return None
+    q = -0.5 * (b + np.sign(b) * np.sqrt(discriminant))
+    x1 = q / a
+    x2 = c / q
     return x1, x2
-
 def main():
     test_cases = [
         (1, 2, 1),             # 简单情况

@@ -1,5 +1,4 @@
 import numpy as np
-
 def standard_formula(a, b, c):
     """使用标准公式求解二次方程 ax^2 + bx + c = 0
     
@@ -9,11 +8,14 @@ def standard_formula(a, b, c):
         c (float): 常数项
     
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
-    # 学生在此处实现代码
-    pass
-
+    discriminant = b ** 2 - 4 * a * c
+    if discriminant < 0:
+       return None
+    x1 = (-b + np.sqrt(discriminant)) / (2 * a)
+    x2 = (-b - np.sqrt(discriminant)) / (2 * a)
+    return x1, x2
 def alternative_formula(a, b, c):
     """使用替代公式求解二次方程 ax^2 + bx + c = 0
     该方法通过将标准公式的分子和分母都乘以 -b∓√(b^2-4ac) 得到
@@ -24,11 +26,14 @@ def alternative_formula(a, b, c):
         c (float): 常数项
     
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
-    # 学生在此处实现代码
-    pass
-
+    discriminant = b ** 2 - 4 * a * c
+    if discriminant < 0:
+       return None
+    x1 = (2 * c) / (-b - np.sqrt(discriminant))
+    x2 = (2 * c) / (-b + np.sqrt(discriminant))
+    return x1, x2
 def stable_formula(a, b, c):
     """稳定的二次方程求根程序，能够处理各种特殊情况和数值稳定性问题
     
@@ -38,11 +43,15 @@ def stable_formula(a, b, c):
         c (float): 常数项
     
     返回:
-        tuple: 方程的两个根 (x1, x2) 或 None(无实根)
+        tuple: 方程的两个根 (x1, x2)
     """
-    # 学生在此处实现代码
-    pass
-
+    discriminant = b ** 2 - 4 * a * c
+    if discriminant < 0:
+       return None
+    q = -0.5 * (b + np.sign(b) * np.sqrt(discriminant))
+    x1 = q / a
+    x2 = c / q
+    return x1, x2
 def main():
     test_cases = [
         (1, 2, 1),             # 简单情况
@@ -77,6 +86,5 @@ def main():
             print("x1 = {:.15f}, x2 = {:.15f}".format(roots3[0], roots3[1]))
         else:
             print("无实根")
-
 if __name__ == "__main__":
     main()

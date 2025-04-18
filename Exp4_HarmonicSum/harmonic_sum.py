@@ -12,7 +12,10 @@ def sum_up(N):
     """
     # 学生在此实现从小到大求和
     # 提示: 使用循环从1加到N，每次加上1/n
-    pass
+    result = 0
+    for n in range(1, N + 1):
+        result += 1 / n
+    return result
 
 def sum_down(N):
     """从大到小计算调和级数和
@@ -25,7 +28,10 @@ def sum_down(N):
     """
     # 学生在此实现从大到小求和
     # 提示: 使用循环从N减到1，每次加上1/n
-    pass
+    result = 0
+    for n in range(N, 0, -1):
+        result += 1 / n
+    return result
 
 def calculate_relative_difference(N):
     """计算两种方法的相对差异
@@ -38,7 +44,9 @@ def calculate_relative_difference(N):
     """
     # 学生在此实现相对差异计算
     # 提示: 使用公式 |S_up - S_down| / ((S_up + S_down)/2)
-    pass
+    S_up = sum_up(N)
+    S_down = sum_down(N)
+    return abs(S_up - S_down) / ((S_up + S_down) / 2)
 
 def plot_differences():
     """绘制相对差异随N的变化"""
@@ -47,7 +55,14 @@ def plot_differences():
     # 1. 使用np.logspace生成N值
     # 2. 计算每个N对应的相对差异
     # 3. 使用plt.loglog绘制双对数坐标图
-    pass
+    N_values = np.logspace(1, 4, num=100, dtype=int)
+    differences = [calculate_relative_difference(N) for N in N_values]
+    plt.loglog(N_values, differences)
+    plt.xlabel('N')
+    plt.ylabel('Relative Difference')
+    plt.title('Relative Difference between Ascending and Descending Sums')
+    plt.grid(True)
+    plt.show()
 
 def print_results():
     """打印典型N值的计算结果"""
@@ -55,7 +70,16 @@ def print_results():
     # 提示:
     # 1. 选择几个典型N值(如10,100,1000,10000)
     # 2. 计算并格式化输出两种方法的和及相对差异
-    pass
+    typical_N = [10, 100, 1000, 10000]
+    for N in typical_N:
+        S_up = sum_up(N)
+        S_down = sum_down(N)
+        diff = calculate_relative_difference(N)
+        print(f"N = {N}:")
+        print(f"  Ascending sum: {S_up:.10f}")
+        print(f"  Descending sum: {S_down:.10f}")
+        print(f"  Relative difference: {diff:.10f}")
+
 
 def main():
     """主函数"""

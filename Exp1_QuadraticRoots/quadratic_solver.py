@@ -13,7 +13,7 @@ def standard_formula(a, b, c):
     """
     discriminant = b ** 2 - 4 * a * c
     if discriminant < 0:
-        return None
+       return None
     x1 = (-b + np.sqrt(discriminant)) / (2 * a)
     x2 = (-b - np.sqrt(discriminant)) / (2 * a)
     return x1, x2
